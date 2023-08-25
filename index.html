@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wk Zero Assignment</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 class="text-center">Week 0 Class Work</h1>
+  <section>
+    <div class="container-fluid bg-3 text-center">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" id="box1">
+            <div class="card-body">
+              <h5 class="card-title">Box 1</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card" id="box2">
+            <div class="card-body">
+              <h5 class="card-title">Box 2</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card" id="box3">
+            <div class="card-body">
+              <h5 class="card-title">Box 3</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 id="chngBtn"> Change Buttons</h2>
+    <div class="text-center mt-4">
+      <button class="btn btn-secondary mx-2" id="change-box-1">Change Box 1</button>
+      <button class="btn btn-secondary mx-2" id="change-box-2">Change Box 2</button>
+      <button class="btn btn-secondary mx-2" id="change-box-3">Change Box 3</button>
+      <button class="btn btn-secondary mx-2" id="change-all">Change All</button>
+    </div>
+    <h3 id="hdBtns">Hide Buttons</h3>
+    <div class="row mt-4">
+      <div class="col d-flex justify-content-center">
+        <button class="btn btn-secondary mx-2" id="hide-box-1">Hide Box 1</button>
+        <button class="btn btn-secondary mx-2" id="hide-box-2">Hide Box 2</button>
+        <button class="btn btn-secondary mx-2" id="hide-box-3">Hide Box 3</button>
+        <button class="btn btn-secondary mx-2" id="hide-all">Hide All</button>
+      </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col text-center">
+          <button class="btn btn-secondary mx-2" id="reset-colours">Reset Colors</button>
+          <button class="btn btn-secondary mx-2" id="show-all">Show All</button>
+        </div>
+      </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+
+    // Store original box colors
+    const originalColors = {
+      "#box1": ["", ""],
+      "#box2": ["", ""],
+      "#box3": ["", ""]
+    };
+
+    // Function to change the color and border of a box
+    function changeBoxStyle(boxId, newColor) {
+      $(boxId).css({
+        "background-color": newColor,
+        "border": "2px solid " + newColor
+      });
+    }
+
+    // Function to reset box colors
+    function resetBoxColors() {
+      for (const boxId in originalColors) {
+        $(boxId).css({
+          "background-color": originalColors[boxId][0],
+          "border": "2px solid " + originalColors[boxId][1]
+        });
+      }
+    }
+
+    // Function to show all boxes
+    function showAllBoxes() {
+      for (const boxId in originalColors) {
+        $(boxId).show();
+      }
+    }
+
+    // Function to hide a box
+    function hideBox(boxId) {
+      $(boxId).hide();
+    }
+
+    // Store original colors when the page loads
+    for (const boxId in originalColors) {
+      originalColors[boxId][0] = $(boxId).css("background-color");
+      originalColors[boxId][1] = $(boxId).css("border-color");
+    }
+
+    // Event listener for the "Change Box 1" button
+    $("#change-box-1").click(function() {
+      changeBoxStyle("#box1", "red");
+    });
+
+    // Event listener for the "Change Box 2" button
+    $("#change-box-2").click(function() {
+      changeBoxStyle("#box2", "blue");
+    });
+
+    // Event listener for the "Change Box 3" button
+    $("#change-box-3").click(function() {
+      changeBoxStyle("#box3", "green");
+    });
+
+    // Event listener for the "Change All" button
+    $("#change-all").click(function() {
+      changeBoxStyle("#box1", "purple");
+      changeBoxStyle("#box2", "orange");
+      changeBoxStyle("#box3", "pink");
+    });
+
+    // Event listener for the "Hide Box 1" button
+    $("#hide-box-1").click(function() {
+      hideBox("#box1");
+    });
+
+    // Event listener for the "Hide Box 2" button
+    $("#hide-box-2").click(function() {
+      hideBox("#box2");
+    });
+
+    // Event listener for the "Hide Box 3" button
+    $("#hide-box-3").click(function() {
+      hideBox("#box3");
+    });
+
+    // Event listener for the "Hide All" button
+    $("#hide-all").click(function() {
+      hideBox("#box1");
+      hideBox("#box2");
+      hideBox("#box3");
+    });
+
+    // Event listener for the "Reset Colors" button
+    $("#reset-colours").click(function() {
+      resetBoxColors();
+    });
+
+    // Event listener for the "Show All" button
+    $("#show-all").click(function() {
+      showAllBoxes();
+    });
+  });
+</script>
+</body>
+</html>
